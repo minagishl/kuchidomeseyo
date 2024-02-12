@@ -8,6 +8,8 @@ generator client {
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  relationMode = "prisma"
 }
 
 model Post {
@@ -18,4 +20,5 @@ model Post {
   ipAddress          String
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+  isDisplayed        Boolean  @default(false)
 }
