@@ -5,7 +5,6 @@ import prisma from '@/app/client';
 import { Post } from '@prisma/client';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
-import { getHostedUrl } from '@/utils/urlHelper';
 
 const cache = new LRUCache({
   max: 500, // The maximum size of the cache
@@ -40,20 +39,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
     cache.set(id, data);
   } else if (data?.isDisplayed) {
-    return {
-      openGraph: { images: [`/${id}/opengraph-image`], url: getHostedUrl() + '/' + id },
-      twitter: {
-        images: [`/${id}/twitter-image`],
-      },
-    };
+    return null;
   }
 
   return {
     title: data?.title ?? '？？？',
-    openGraph: { images: [`/${id}/opengraph-image`], url: getHostedUrl() + '/' + id },
-    twitter: {
-      images: [`/${id}/twitter-image`],
-    },
   };
 }
 
