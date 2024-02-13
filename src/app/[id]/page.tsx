@@ -41,18 +41,18 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     cache.set(id, data);
   } else if (data?.isDisplayed) {
     return {
-      openGraph: { images: [`/api/opengraph?id=${id}`], url: getHostedUrl() + '/' + id },
+      openGraph: { images: [`/${id}/opengraph-image`], url: getHostedUrl() + '/' + id },
       twitter: {
-        images: [`/api/twitter?id=${id}`],
+        images: [`/${id}/twitter-image`],
       },
     };
   }
 
   return {
     title: data?.title ?? '？？？',
-    openGraph: { images: [`/api/opengraph?id=${id}`], url: getHostedUrl() + '/' + id },
+    openGraph: { images: [`/${id}/opengraph-image`], url: getHostedUrl() + '/' + id },
     twitter: {
-      images: [`/api/twitter?id=${id}`],
+      images: [`/${id}/twitter-image`],
     },
   };
 }

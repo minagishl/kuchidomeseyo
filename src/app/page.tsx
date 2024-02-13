@@ -101,7 +101,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-10">
       <div
-        className={`absolute inset-0 h-screen w-screen items-center justify-center ${showDiv ? 'flex' : 'hidden'}`}
+        className={`absolute inset-0 z-50 h-screen w-screen items-center justify-center bg-white ${showDiv ? 'flex' : 'hidden'}`}
       >
         <Image
           src="/logo.svg"
@@ -125,7 +125,7 @@ export default function Home() {
               <div>
                 <div>
                   <label htmlFor="title" className="block pb-2 text-lg font-semibold">
-                    表示する文字
+                    指示する内容
                   </label>
                   {error.title && <p className="pb-2 text-base font-medium text-red-500">{error.title}</p>}
                 </div>
@@ -136,29 +136,29 @@ export default function Home() {
                   className="w-full rounded-lg border-2 border-black p-2 focus-within:outline-none"
                   onChange={handleChange}
                 />
-                <div className="flex items-center justify-between pt-5">
-                  <label htmlFor="hideTitle" className="block text-lg font-semibold">
-                    生成される画像にタイトルを表示しない
-                  </label>
+                <div className="flex items-center pt-5">
                   <input
                     type="checkbox"
                     id="hideTitle"
                     name="hideTitle"
-                    className="h-5 w-5 rounded-lg"
+                    className="h-4 min-h-4 w-4 min-w-4 rounded-lg"
                     onChange={handleChange}
                   />
-                </div>
-                <div className="flex items-center justify-between pt-5">
-                  <label htmlFor="deleteAfterDisplay" className="block text-lg font-semibold">
-                    閲覧後に削除する
+                  <label htmlFor="hideTitle" className="block pl-3 text-lg font-semibold">
+                    ソーシャルメディア用の画像に内容を表示しない
                   </label>
+                </div>
+                <div className="flex items-center pt-5">
                   <input
                     type="checkbox"
                     id="deleteAfterDisplay"
                     name="deleteAfterDisplay"
-                    className="h-5 w-5 rounded-lg"
+                    className="h-4 min-h-4 w-4 min-w-4 rounded-lg"
                     onChange={handleChange}
                   />
+                  <label htmlFor="deleteAfterDisplay" className="block pl-3 text-lg font-semibold">
+                    閲覧後に消滅させる
+                  </label>
                 </div>
               </div>
               <div className="flex h-fit flex-col space-y-5">
