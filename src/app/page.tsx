@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Noto_Sans_JP } from 'next/font/google';
 import QRCode from '@/components/QRcode';
+import Link from 'next/link';
 
 const NotoSansJP = Noto_Sans_JP({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -113,73 +114,86 @@ export default function Home() {
       <div
         className={`absolute left-1/2 top-1/2 h-screen w-screen max-w-lg -translate-x-1/2 -translate-y-1/2 ${NotoSansJP.className}`}
       >
-        <div className="h-full w-full p-5 lg:p-10">
-          <form
-            className="relative flex h-full w-full max-w-lg flex-col overflow-hidden rounded-lg border-4 border-black bg-white pb-5"
-            onSubmit={handleSubmit}
-          >
-            <h1 className="py-5 pb-10 text-center text-3xl font-bold">新規作成</h1>
-            <div className="flex h-full flex-col justify-between px-5">
-              <div>
+        <div className="flex h-full w-full flex-col p-5 lg:p-10">
+          <div className="h-full flex-1">
+            <form
+              className="relative flex h-full w-full max-w-lg flex-col overflow-hidden rounded-lg border-4 border-black bg-white pb-5"
+              onSubmit={handleSubmit}
+            >
+              <h1 className="py-5 pb-10 text-center text-3xl font-bold">新規作成</h1>
+              <div className="flex h-full flex-col justify-between px-5">
                 <div>
-                  <label htmlFor="title" className="block pb-2 text-lg font-semibold">
-                    指示する内容
-                  </label>
-                  {error.title && <p className="pb-2 text-base font-medium text-red-500">{error.title}</p>}
-                </div>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  className="w-full rounded-lg border-2 border-black p-2 focus-within:outline-none"
-                  onChange={handleChange}
-                />
-                <div className="flex items-center pt-5">
+                  <div>
+                    <label htmlFor="title" className="block pb-2 text-lg font-semibold">
+                      指示する内容
+                    </label>
+                    {error.title && <p className="pb-2 text-base font-medium text-red-500">{error.title}</p>}
+                  </div>
                   <input
-                    type="checkbox"
-                    id="deleteAfterDisplay"
-                    name="deleteAfterDisplay"
-                    className="h-4 min-h-4 w-4 min-w-4 rounded-lg"
+                    type="text"
+                    id="title"
+                    name="title"
+                    className="w-full rounded-lg border-2 border-black p-2 focus-within:outline-none"
                     onChange={handleChange}
                   />
-                  <label htmlFor="deleteAfterDisplay" className="block pl-3 text-lg font-semibold">
-                    閲覧後に消滅させる
-                  </label>
-                </div>
-              </div>
-              <div className="flex h-fit flex-col space-y-5">
-                {qrCodeUrl && (
-                  <span className="flex w-full justify-center text-center text-lg font-semibold">
-                    {isClicked ? 'コピーしました' : 'QRコードをクリックしてURLをコピー'}
-                  </span>
-                )}
-                <div className="px-10 pb-10">
-                  {qrCodeUrl ? (
-                    <QRCode
-                      id="qrcode"
-                      url={qrCodeUrl}
-                      className="aspect-square cursor-pointer rounded-lg border-4 border-black p-10"
-                      style={{
-                        width: '100% !important',
-                        height: '100% !important',
-                      }}
-                      onClick={() => handleClick(qrCodeUrl)}
+                  <div className="flex items-center pt-5">
+                    <input
+                      type="checkbox"
+                      id="deleteAfterDisplay"
+                      name="deleteAfterDisplay"
+                      className="h-4 min-h-4 w-4 min-w-4 rounded-lg"
+                      onChange={handleChange}
                     />
-                  ) : (
-                    <div className="flex aspect-square items-center justify-center rounded-lg border-4 border-black p-10">
-                      <p className="text-center text-lg font-semibold">QRコードが表示されます</p>
-                    </div>
-                  )}
+                    <label htmlFor="deleteAfterDisplay" className="block pl-3 text-lg font-semibold">
+                      閲覧後に消滅させる
+                    </label>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="h-11 w-full rounded-lg bg-black p-2 text-white focus-within:outline-none"
-                >
-                  作成
-                </button>
+                <div className="flex h-fit flex-col space-y-5">
+                  {qrCodeUrl && (
+                    <span className="flex w-full justify-center text-center text-lg font-semibold">
+                      {isClicked ? 'コピーしました' : 'QRコードをクリックしてURLをコピー'}
+                    </span>
+                  )}
+                  <div className="px-10 pb-10">
+                    {qrCodeUrl ? (
+                      <QRCode
+                        id="qrcode"
+                        url={qrCodeUrl}
+                        className="aspect-square cursor-pointer rounded-lg border-4 border-black p-10"
+                        style={{
+                          width: '100% !important',
+                          height: '100% !important',
+                        }}
+                        onClick={() => handleClick(qrCodeUrl)}
+                      />
+                    ) : (
+                      <div className="flex aspect-square items-center justify-center rounded-lg border-4 border-black p-10">
+                        <p className="text-center text-lg font-semibold">QRコードが表示されます</p>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    type="submit"
+                    className="h-11 w-full rounded-lg bg-black p-2 text-white focus-within:outline-none"
+                  >
+                    作成
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div className="flex min-h-fit justify-between pt-5">
+            <ul className="flex flex-row space-x-5 font-semibold">
+              <li>
+                <Link href="/privacy">プライバシーポリシ</Link>
+              </li>
+              <li>
+                <Link href="/terms">利用規約</Link>
+              </li>
+            </ul>
+            <Link href="https://twitter.com/minagishl">開発者</Link>
+          </div>
         </div>
       </div>
     </main>

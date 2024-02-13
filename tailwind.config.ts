@@ -45,7 +45,7 @@ const config: Config = {
       serif: ['var(--font-serif)', ...defaultThema.fontFamily.serif],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;
