@@ -44,7 +44,10 @@ const nextConfig = {
       },
     ];
 
-    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+    if (
+      (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') &&
+      !process.env.TEST_BUILD
+    ) {
       headers.push({
         source: '/:path*',
         headers: [

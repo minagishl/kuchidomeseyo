@@ -9,13 +9,12 @@ export async function POST(request: NextRequest) {
     return new Response(`Request body is required.`, { status: 400 });
   }
 
-  const { title, hideTitle, deleteAfterDisplay } = (await request.json()) as {
+  const { title, deleteAfterDisplay } = (await request.json()) as {
     title: string;
-    hideTitle: boolean;
     deleteAfterDisplay: boolean;
   };
 
-  if (title === undefined || hideTitle === undefined || deleteAfterDisplay === undefined) {
+  if (title === undefined || deleteAfterDisplay === undefined) {
     return new Response(`Request body is not formatted correctly.`, { status: 400 });
   } else if (title.length > 30) {
     return new Response(`Title is too long.`, { status: 400 });
@@ -33,7 +32,7 @@ export async function POST(request: NextRequest) {
       data: {
         id,
         title,
-        hideTitle,
+        hideTitle: false,
         deleteAfterDisplay,
         ipAddress,
         createdAt,
@@ -42,7 +41,7 @@ export async function POST(request: NextRequest) {
       } as Post,
     });
 
-    return new Response(JSON.stringify({ id, title, hideTitle, deleteAfterDisplay, createdAt, updatedAt }), {
+    return new Response(JSON.stringify({ id, title, deleteAfterDisplay, createdAt, updatedAt }), {
       status: 201,
     });
   } catch (error) {

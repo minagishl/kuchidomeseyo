@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:build": "prisma generate --no-engine && TEST_BUILD=true next build",
     "build": "prisma generate --no-engine && next build && npm run sitemap",
     "start": "next start",
     "lint": "next lint",

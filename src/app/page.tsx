@@ -14,12 +14,10 @@ export default function Home() {
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
   const [error, setError] = useState({
     title: '',
-    hideTitle: '',
     deleteAfterDisplay: '',
   });
   const [formData, setFormData] = useState({
     title: '',
-    hideTitle: false,
     deleteAfterDisplay: false,
   });
 
@@ -58,10 +56,10 @@ export default function Home() {
     });
 
     if (formData.title === '' && e.target.name === 'title') {
-      setError({ title: 'タイトルを入力してください', hideTitle: '', deleteAfterDisplay: '' });
+      setError({ title: 'タイトルを入力してください', deleteAfterDisplay: '' });
       console.log('Error: title is empty');
     } else {
-      setError({ title: '', hideTitle: '', deleteAfterDisplay: '' });
+      setError({ title: '', deleteAfterDisplay: '' });
     }
   };
 
@@ -69,7 +67,7 @@ export default function Home() {
     e.preventDefault();
 
     if (formData.title.length === 0) {
-      setError({ title: 'タイトルを入力してください', hideTitle: '', deleteAfterDisplay: '' });
+      setError({ title: 'タイトルを入力してください', deleteAfterDisplay: '' });
       console.log('error');
     } else {
       console.log(formData);
@@ -120,7 +118,7 @@ export default function Home() {
             className="relative flex h-full w-full max-w-lg flex-col overflow-hidden rounded-lg border-4 border-black bg-white pb-5"
             onSubmit={handleSubmit}
           >
-            <h1 className="py-5 pb-10 text-center text-3xl font-bold">新規作成する</h1>
+            <h1 className="py-5 pb-10 text-center text-3xl font-bold">新規作成</h1>
             <div className="flex h-full flex-col justify-between px-5">
               <div>
                 <div>
@@ -136,18 +134,6 @@ export default function Home() {
                   className="w-full rounded-lg border-2 border-black p-2 focus-within:outline-none"
                   onChange={handleChange}
                 />
-                <div className="flex items-center pt-5">
-                  <input
-                    type="checkbox"
-                    id="hideTitle"
-                    name="hideTitle"
-                    className="h-4 min-h-4 w-4 min-w-4 rounded-lg"
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="hideTitle" className="block pl-3 text-lg font-semibold">
-                    ソーシャルメディア用の画像に内容を表示しない
-                  </label>
-                </div>
                 <div className="flex items-center pt-5">
                   <input
                     type="checkbox"
