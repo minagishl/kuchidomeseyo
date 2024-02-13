@@ -4,6 +4,11 @@ import { Post } from '@prisma/client';
 
 export const runtime = 'edge';
 
+// Return error
+export async function GET() {
+  return new Response(`This endpoint only accepts POST requests.`, { status: 405 });
+}
+
 export async function POST(request: NextRequest) {
   if (!request.body) {
     return new Response(`Request body is required.`, { status: 400 });
