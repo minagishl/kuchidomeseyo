@@ -15,9 +15,9 @@ export default async function Image({ params }: { params: { id: string } }) {
 
     const [data] = (await getCache(id)) as [Post];
 
-    const fontData = await fetch(new URL('./assets/NotoSerifJP-Bold.otf', import.meta.url)).then((res) =>
-      res.arrayBuffer()
-    );
+    const fontData = await fetch(new URL('../assets/NotoSerifJP-Bold.otf', import.meta.url), {
+      cache: 'no-store',
+    }).then((res) => res.arrayBuffer());
 
     return new ImageResponse(<ImageBody hideTitle={data.hideTitle} title={data.title} />, {
       width: 1200,
