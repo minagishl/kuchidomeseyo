@@ -2,7 +2,7 @@
 
 import { LRUCache } from 'lru-cache';
 import prisma from '@/app/client';
-import { Post } from '../../../prisma/client';
+import { Post } from '@prisma/client';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
 
