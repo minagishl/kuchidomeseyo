@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import prisma from '@/app/client';
-import { Post } from '@prisma/client';
+import { Post } from '../../../../prisma/client';
 
 export const runtime = 'edge';
 
