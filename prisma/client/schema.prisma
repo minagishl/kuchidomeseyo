@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "./client"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  directUrl    = env("DIRECT_URL")
+  relationMode = "prisma"
+}
+
+model Post {
+  id                 String   @id @default(uuid())
+  title              String
+  hideTitle          Boolean
+  deleteAfterDisplay Boolean  @default(false)
+  ipAddress          String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  isDisplayed        Boolean  @default(false)
+}
