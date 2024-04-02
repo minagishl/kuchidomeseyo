@@ -1,3 +1,8 @@
+> This is a quick application that was previously published!  
+> Please forgive the messy code!  
+> Application: https://kuchidomeseyo.vercel.app/
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).
 
 ## Getting Started
